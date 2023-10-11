@@ -1,4 +1,4 @@
-#Breath First Search
+# Depth First Search
 
 grafo = {
   'A': ['B', 'C'],
@@ -10,12 +10,12 @@ grafo = {
   'G': ['C']
 }
 
-queue = [list(grafo.keys())[0]]
+stack = [list(grafo.keys())[0]]  # Usamos uma pilha para DFS
 visitados = set()
 
-while queue:
-    node = queue.pop(0)
-    print(f'\n\n----- Removendo o primeiro nó ({node}) da frente da fila => {str(queue)} -------')
+while stack:
+    node = stack.pop()  # Retire o nó do topo da pilha
+    print(f'\n\n----- Removendo o nó ({node}) do topo da pilha => {str(stack)} -------')
     print(f'----- Verificando se o nó ({node}) está em visitados => {str(visitados)} -------')
     if node not in visitados:
         visitados.add(node)
@@ -23,7 +23,7 @@ while queue:
         for vizinho in grafo[node]:
             print(f'----- Verificando o vizinho ({vizinho}) se está em visitados => {str(visitados)} -------')
             if vizinho not in visitados:
-                print(f'----- Adicionando o vizinho ({vizinho}) na fila => {str(queue)} -------')
-                queue.append(vizinho)
+                print(f'----- Adicionando o vizinho ({vizinho}) na pilha => {str(stack)} -------')
+                stack.append(vizinho)
 
-        print(f'----- Fila atualizado => {str(queue)} -------')
+        print(f'----- Pilha atualizada => {str(stack)} -------')
